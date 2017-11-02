@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todoApp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>ToDo</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+	<script src="./app.js"></script>
+
+	<!-- services -->
+	<script src="./services/todoService.js"></script>
+
+	<!-- controllers -->
+	<script src="./controllers/todoController.js"></script>
+
+	<!-- directives -->
+	<script src="./directives/newTodo.js"></script>
+	<script src="./directives/todoItem.js"></script>
+	
+
+	<!-- filters -->
+	<script src="./filters/todoItem.js"></script>
+
+	
+</head>
+<body>
+	<div class="todo-container" ng-controller="TodoCtrl">
+		<button ng-click="toggleFilter()">{{ activeFilter ? 'Show Completed' : 'Hide Completed' }}</button>
+		<todo-item
+			ng-repeat="item in items | filterCompleted : activeFilter"
+			item="item"
+			index="$index"
+			on-delete="deleteItem(index)"
+		></todo-item>
+		<button ng-click="clearCompleted()">Clear Completed</button>
+		<new-todo on-create="createTodo(item)"></new-todo>
+	</div>
+</body>
+</html>

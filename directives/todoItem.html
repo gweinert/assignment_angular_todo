@@ -1,0 +1,10 @@
+<div>
+	<span>{{ item.text }}</span>
+	<span>{{ item.dueDate | date : mediumDate }}</span>
+	<span>completed:
+		<input type="checkbox" name="completed" ng-model="item.completed">
+	</span>
+	<span>
+		<span ng-click="deleteItem(index)">x</span>
+	</span>
+</div>
